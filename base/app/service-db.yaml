@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  type: ClusterIP
+  selector:
+    pod: db
+  ports:
+    - name: tcp
+      protocol: TCP
+      port: 5432
+      targetPort: postgres-port

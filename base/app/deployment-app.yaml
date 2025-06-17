@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    deployment: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      pod: app
+  template:
+    metadata:
+      labels:
+        pod: app
+    spec:
+      containers:
+      - name: app
+        image: <IMAGE-HERE>
+        ports:
+          - containerPort: 8080
+            name: http-app
