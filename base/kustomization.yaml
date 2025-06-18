@@ -1,0 +1,8 @@
+resources:
+  - app/deployment-app.yaml
+  - app/deployment-db.yaml
+  - app/pv-db.yaml
+  - app/pvc-db.yaml
+  - app/service-app.yaml
+  - app/service-db.yaml
+  - ingress/ingress-app.yaml

@@ -20,3 +20,10 @@ spec:
         ports:
           - containerPort: 8080
             name: http-app
+        resources:
+          requests:
+            memory: "<CHANGE ME>"
+            cpu: "<CHANGE ME>"
+          limits:
+            memory: "<CHANGE ME>"
+            cpu: "<CHANGE ME>"
