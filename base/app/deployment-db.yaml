@@ -34,3 +34,25 @@ spec:
             limits:
               memory: "<CHANGE ME>"
               cpu: "<CHANGE ME>"
+          securityContext:
+            runAsUser: 0 # <CHANGE ME> - Currently running as root, shouldn't do this
+            runAsGroup: 0 # <CHANGE ME> - Currently running as root group, shouldn't do this
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - admin
+                - -d
+                - quanrestaurantdb
+                - -h
+                - db-service
+                - -p
+                - "5432"
+            initialDelaySeconds: 5
+            periodSeconds: 3

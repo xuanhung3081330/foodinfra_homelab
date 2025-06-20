@@ -5,3 +5,17 @@ namePrefix: dev-
 
 patchesStrategicMerge:
   - replicas-patch-app.yaml
+
+secretGenerator:
+  - name: db-creds
+    literals:
+      - DB_USER=admin
+      - DB_PASSWORD=<ADD ME> # ADD
+
+configMapGenerator:
+  - name: db-config
+    literals:
+      - DB_HOST=db-service
+      - DB_PORT=5432
+      - DB_NAME=quanrestaurantdb
+      - DB_SSLMODE=disable
