@@ -1,0 +1,18 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: db-creds
+  namespace: default
+  annotations:
+    sealedsecrets.bitnami.com/managed: "true"
+spec:
+  encryptedData:
+    DB_PASSWORD: AgA/pXnGRCm1MBDf6zQY7cYeFFp2J8wSuILBzvZB6xX90Dxh73JUed/DPvGBMasvfKFoWiv6667YRr02NW3Gs16//zGs9X2sk3RJZX9DDl1s9++vnjFmFi3nOm9Sw4r5/llniG5+PZ/1aC2aMElO+w179FgCr7bpIJm+A40d4hnpESW4CtCsLRkWkgwBY5STAucRWRdhnGwcdMgkTOKJ6r6qowigq4Tp3uJylN8P11o/3ojxin5lFkxqSPgqHNPupeVyran//SB2SfKGjJI94JOto6ylMZKe2wpsicJorwJPkXnydyROpa6009OUqRdiJEqg06TayviwYqsGacu0riHfbBslwsmR5hqT9T+C71U9jPg55At56ie4AhFL1QxGb0hjaYz9BX+P7xjfOnrctT+e/B4mOtWXTNzp2+nvDWz1a8LvCRVNb27Kfr8ngc/Iwo3CbNEFnjfq1ubEOZvCqSVPRq8eeNno58QlhhDuD7xiZ7HS8ZEwaXXoIDUrHR+xUZBI8K4Sq85C+NPh/c4BBerVkt67zzrIRTobDyFs419O0KVQJ3f6haUZHZ7vudE8BAzwsfWWepCu6co9JGqWHb0j7gGq1p5Zr2RWwZevn5rhnY9cZNPEl9BsnTrKiwCDi7a+RidfHwqMaX/Q4ZQBimegIxK7k/afxrqTg0d6IKES1nD4DIbYzCHdud/ef5yBZaYQi69khRgAFreEKBfFjYA=
+    DB_USER: AgBcsLGZT+JV2vGAeRYc2G6RoCJc2S7ENxNhlyYWC/LWhux18WgycRAgjarZBW2rubNj10+hQrCOZnSL6XHc+5L0yPch5ARcHtBzjhtxpsgV+4MQ1ZKgGF69QglL6QcEnMz3nq5QZThntCmcir/b+d6FlxUEaXhAvQ3I68F/JGbdrKAY4fxN4ZvCO6L5fc8xrX2m3aYfxWTaPHu+OEIXWYET433Y6zDo/Y/LChIIjYzIhCKnV8X1vMLMgK91jB5vxlD/mjuBKGKk58Wwf8h+6zSSf2+1OSSjadQtWIjwsoi0UtEFePySYx9Y4Rm4eN613s7QuJE2XOJ7VWOtdCnr9OZcp8xXxAFH4lgEtbE48/QeE2GwnR5Rt8YvNPHKMCFVw2yHOObptPLokMUmM9VaSu6dNjVnpeCAguwKTqWW9gozlQBvCucOci1Z/tIVg1nEClIPhH+h35N0wXjN49TI1NNQ1BlqzbsJKResoUb2W60NoQni/eLPnC2Po9+twuGtELREeb40Dq4u06wB9lFpOOKH4PcZw3lsEDPvqTkN5PoA01WmbX3zIx2EyplbUUItEK70KtfO47TQOD0WNXfqNnn8+5QeEaTlhoEg595GjxW6HONpohFvXve5o4GCDfonL5peXG7tRZZyxOfh6sH244at8/R6e/4pvP11yiXq/nbPCLUdWDYtsNY8lwssDns6kpY6E2QaOQ==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: db-creds
+      namespace: default
