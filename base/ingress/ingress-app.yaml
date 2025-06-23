@@ -5,9 +5,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: app-nginx
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - <CHANGE ME>
   rules:
-    - http:
+    - host: <CHANGE ME>
+      http:
         paths:
           - path: /api/food
             pathType: Prefix

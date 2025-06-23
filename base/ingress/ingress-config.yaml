@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+data:
+  # The maximum time NGINX will wait to establish a TCP connection to the upstream (backend service)
+  proxy-connect-timeout: "20"
+
+  # The maximum time NGINX will wait for a response from the backend after a successful connection
+  proxy-read-timeout: "10"
+
+  # The maximum tiem NGINX waits while sending data to the backend
+  proxy-send-timeout: "10"
+
+  # Limits the maximum size of the request bodies
+  proxy-body-size: "0"
+
+  # Specifies trusted IP ranges from which NGINX should accept the X-Forwarded-For or X-Real-IP headers
+  proxy-real-ip-cidr: "0.0.0.0/0"
+
+  # Sets the verbosity of NGINX's error log ("info": used in dev, "error": used in prod)
+  error-log-level: "info"
+
+  # Logs of every request
+  disable-access-log: "false"
+
+  # Defines the structure of each access log entry
+  log-format-upstream: '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent'
+
+  # Sets an unconditional 301 redirect rule for all incoming HTTP traffic to force incoming traffic over HTTPS
+  ssl-redirect: "true"
