@@ -1,37 +1,31 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
   labels:
+    app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
   name: ingress-nginx
+  namespace: ingress-nginx
 rules:
 - apiGroups:
   - ""
   resources:
-  - configmaps
-  - endpoints
-  - nodes
-  - pods
-  - secrets
   - namespaces
   verbs:
-  - list
-  - watch
-- apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - list
-  - watch
+  - get
 - apiGroups:
   - ""
   resources:
-  - nodes
+  - configmaps
+  - pods
+  - secrets
+  - endpoints
   verbs:
   - get
+  - list
+  - watch
 - apiGroups:
   - ""
   resources:
@@ -49,13 +43,6 @@ rules:
   - list
   - watch
 - apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
-- apiGroups:
   - networking.k8s.io
   resources:
   - ingresses/status
@@ -70,6 +57,28 @@ rules:
   - list
   - watch
 - apiGroups:
+  - coordination.k8s.io
+  resourceNames:
+  - ingress-nginx-leader
+  resources:
+  - leases
+  verbs:
+  - get
+  - update
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
   - discovery.k8s.io
   resources:
   - endpointslices
@@ -79,16 +88,18 @@ rules:
   - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 metadata:
   labels:
+    app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
   name: ingress-nginx
+  namespace: ingress-nginx
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: ingress-nginx
 subjects:
 - kind: ServiceAccount
