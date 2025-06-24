@@ -1,3 +1,4 @@
+# Config for NGINX Ingress Controller
 apiVersion: v1
 kind: ConfigMap
 metadata:
