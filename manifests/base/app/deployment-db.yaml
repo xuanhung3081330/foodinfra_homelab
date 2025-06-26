@@ -14,6 +14,8 @@ spec:
       labels:
         pod: db
     spec:
+      securityContext:
+        fsGroup: 70 # ADDED JUST FOR TESTING
       volumes:
         - name: db-pv-storage
           persistentVolumeClaim:
@@ -29,15 +31,15 @@ spec:
               name: db-pv-storage
           resources:
             requests:
-              memory: "<CHANGE ME>"
-              cpu: "<CHANGE ME>"
+              memory: "256Mi" # JUST FOR TESTING
+              cpu: "125m" # JUST FOR TESTING
             limits:
-              memory: "<CHANGE ME>"
-              cpu: "<CHANGE ME>"
+              memory: "512Mi" # JUST FOR TESTING
+              cpu: "250m" # JUST FOR TESTING
           securityContext:
-            runAsUser: 0 # <CHANGE ME> - Currently running as root, shouldn't do this
-            runAsGroup: 0 # <CHANGE ME> - Currently running as root group, shouldn't do this
-            runAsNonRoot: true
+            runAsUser: 70 # FOR TESTING
+            runAsGroup: 70 # FOR TESTING
+            runAsNonRoot: true # FOR TESTING
             allowPrivilegeEscalation: false
             capabilities:
               drop:
@@ -56,3 +58,6 @@ spec:
                 - "5432"
             initialDelaySeconds: 5
             periodSeconds: 3
+          env: # JUST FOR TESTING
+            - name: POSTGRES_PASSWORD
+              value: postgres
