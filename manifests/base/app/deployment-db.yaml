@@ -52,12 +52,14 @@ spec:
                 - admin
                 - -d
                 - quanrestaurantdb
-                - -h
-                - db-service
                 - -p
                 - "5432"
             initialDelaySeconds: 5
             periodSeconds: 3
-          env: # JUST FOR TESTING
+          env: # JUST FOR TESTING (Move this to SealedSecret)
             - name: POSTGRES_PASSWORD
               value: postgres
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_DB
+              value: quanrestaurantdb
