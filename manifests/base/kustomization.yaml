@@ -5,4 +5,4 @@ resources:
   - app/pvc-db.yaml
   - app/service-app.yaml
   - app/service-db.yaml
-  - ingress/ingress-app.yaml
+  # - ingress/ingress-app.yaml # JUST FOR TESTING
