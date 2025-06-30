@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    deployment: app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        pod: app
+    spec:
+      initContainers:
+        - name: init-db
+          env: # JUST FOR TESTING
+            - name: ENV
+              value: dev
+      containers: # JUST FOR TESTING
+        - name: app
+          envFrom:
+            - configMapRef:
+                name: dev-db-config
+            # - secretRef:
+            #     name: dev-db-creds # Commented - JUST FOR TESTING

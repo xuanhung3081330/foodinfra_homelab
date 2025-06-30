@@ -17,7 +17,7 @@ spec:
     required:
       nodeSelectorTerms:
         - matchExpressions:
-          - key: <REPLACE HERE>
+          - key: node-role.kubernetes.io/control-plane # JUST FOR TESTING
             operator: In
             values:
-              - <REPLACE HERE>
+              - "true" # JUST FOR TESTING
