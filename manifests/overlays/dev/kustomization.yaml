@@ -6,8 +6,8 @@ resources:
 namePrefix: dev-
 
 patchesStrategicMerge:
-  - replicas-patch-app.yaml
   - replicas-patch-db.yaml
+  - deployment-patch-app.yaml
 
 #secretGenerator:
 #  - name: db-creds

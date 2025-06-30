@@ -21,13 +21,24 @@ spec:
             - sh
             - -c
             - |
-              until nc -z -v -w30 db-service 5432; do
+              DB_SERVICE_NAME=db-service
+              if [[ -n ${ENV} ]]; then
+                DB_SERVICE_NAME="${ENV}-${DB_SERVICE_NAME}"
+              fi
+
+              until nc -z -v -w30 ${DB_SERVICE_NAME} 5432; do
                 echo "Waiting for PostgreSQL to be ready...";
                 sleep 5;
               done
+          env: # JUST FOR TESTING
+            - name: ENV
+              value: "" # DEFAULT is empty. A specific value should be specified in overlays/<Environment>
       containers:
       - name: app
         image: busybox:1.36 # JUST FOR TESTING
+        command: # JUST FOR TESTING - Use for now only
+          - sleep
+          - "3600"
         ports:
           - containerPort: 8080
             name: http-app
@@ -46,8 +57,9 @@ spec:
           capabilities:
             drop:
               - ALL
-        envFrom:
-          - configMapRef:
-              name: db-config
-          - secretRef:
-              name: db-creds
+        # TODO: Consider removing this field as I'm thinking that app pods in each environment can use different methods to get Secret and Config
+        # envFrom:
+        #   - configMapRef:
+        #       name: db-config
+        #   - secretRef:
+        #       name: db-creds
