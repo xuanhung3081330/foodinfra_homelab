@@ -12,12 +12,12 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   local:
-    path: /mnt/data/postgresql
+    path: /mnt/data/postgresql # Local disk path on the node
   nodeAffinity:
     required:
       nodeSelectorTerms:
         - matchExpressions:
-          - key: <REPLACE HERE>
+          - key: kubernetes.io/hostname
             operator: In
             values:
-              - <REPLACE HERE>
+              - hungnx-secondarchpc

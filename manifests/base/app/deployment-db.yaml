@@ -21,6 +21,12 @@ spec:
       containers:
         - name: db
           image: postgres:17.5-alpine3.22
+          #command: ["sh", "-c", "id postgres"] # For debugging purpose
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "mysecretpassword" # Testing only
+            #- name: PGDATA
+            #  value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
               name: postgres-port
@@ -29,14 +35,14 @@ spec:
               name: db-pv-storage
           resources:
             requests:
-              memory: "<CHANGE ME>"
-              cpu: "<CHANGE ME>"
+              memory: "512Mi"
+              cpu: "250m" # Quarter of a core
             limits:
-              memory: "<CHANGE ME>"
-              cpu: "<CHANGE ME>"
+              memory: "1Gi"
+              cpu: "1" # 1 full core
           securityContext:
-            runAsUser: 0 # <CHANGE ME> - Currently running as root, shouldn't do this
-            runAsGroup: 0 # <CHANGE ME> - Currently running as root group, shouldn't do this
+            runAsUser: 70 # Default postgresql's user (postgres)
+            runAsGroup: 70 # Default postgresql's group (postgres)
             runAsNonRoot: true
             allowPrivilegeEscalation: false
             capabilities:
@@ -44,15 +50,13 @@ spec:
                 - ALL
           readinessProbe:
             exec:
-              command:
-                - pg_isready
-                - -U
-                - admin
-                - -d
-                - quanrestaurantdb
-                - -h
-                - db-service
-                - -p
-                - "5432"
+              command: ["pg_isready", "-U", "admin", "-d", "quanrestaurantdb", "-h", "db-service", "-p", "5432"]
             initialDelaySeconds: 5
             periodSeconds: 3
+          startupProbe:
+            exec:
+              command: ["pg_isready", "-U", "admin", "-d", "quanrestaurantdb", "-h", "db-service", "-p", "5432"]
+            failureThreshold: 30
+            periodSeconds: 10
+
+# TODO: Add initcontainers to change the permission of node's filesystem (/mnt/data/postgresql)
