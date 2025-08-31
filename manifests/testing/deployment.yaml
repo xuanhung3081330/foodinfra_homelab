@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-app
+  namespace: testing-ground
+spec:
+  replicas: 3
+  strategy:
+    #type: RollingUpdate
+    #rollingUpdate:
+    #  maxUnavailable: 1
+    #  maxSurge: 1
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.29.1-alpine
+          ports:
+            - containerPort: 8080
