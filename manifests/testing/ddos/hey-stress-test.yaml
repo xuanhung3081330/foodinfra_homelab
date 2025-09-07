@@ -5,7 +5,7 @@ metadata:
   labels:
     app: loadgen
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: loadgen
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hey
-          image: rakyll/hey:latest
+          image: ricoli/hey
           args:
             - "-z"
             - "10m"
