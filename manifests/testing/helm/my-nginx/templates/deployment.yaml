@@ -18,7 +18,3 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 80
-
-# {{ .Release.Name }} --> Unique release name provided during `helm install`
-# {{ .Values.* }} --> Reads from `values.yaml`
-
