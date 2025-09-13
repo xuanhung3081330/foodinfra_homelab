@@ -1,0 +1,19 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: webapp-latency
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: nginx
+  delay:
+    latency: "500ms"
+    jitter: "100ms"
+  loss:
+    loss: "10"
+    correlation: "25"
+  duration: "10m"

@@ -1,0 +1,63 @@
+controller:
+  annotations:
+    app.kuberenetes.io/managed-by: "Helm"
+    #meta.helm.sh/release-name: "nginx-ingress"
+    meta.helm.sh/release-namespace: "ingress-nginx"
+
+  # Number of NGINX Ingress Controller pods
+  # Set to 1 for easy observation
+  replicaCount: 1
+
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30080
+      https: 30443
+
+  ingressClassResource:
+
+    # Name of the IngressClass
+    name: nginx
+
+    # Identifies the controller
+    controllerValue: "k8s.io/ingress-nginx"
+    default: true
+
+  admissionWebhooks:
+    # Enables validating and mutating webhooks for the Ingress Controller
+    enabled: true
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+  #config:
+  #  enable-rate-limit: "true"
+    
+  #  # Maximum requests per second per clientIP
+  #  limit-rps: "10"
+
+  #  # Allows small bursts above the limit-rps
+  #  limit-burst-multiplier: "2"  
+
+## NOTE: Tried this but it isn't working, so I created a separate file for Ingress resource
+# Customize the Ingress resource definition
+#ingress:
+#  enabled: true
+#  ingressClassName: nginx
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/limit-rps: "10"
+#    nginx.ingress.kubernetes.io/limit-burst: "20"
+#  hosts:
+#    - host: nginx-service
+#      paths:
+#        - path: /
+#          pathType: Prefix
+#          service:
+#            name: nginx-service
+#            port: 80
