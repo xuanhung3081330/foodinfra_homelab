@@ -13,26 +13,26 @@ controller:
       http: 30080
       https: 30443
 
-#  ingressClassResource:
+  ingressClassResource:
 
-#    # Name of the IngressClass
-#    name: nginx
+    # Name of the IngressClass
+    name: nginx
 
-#    # Identifies the controller
-#    controllerValue: "k8s.io/ingress-nginx"
-#    default: true
+    # Identifies the controller
+    controllerValue: "k8s.io/ingress-nginx"
+    default: true
 
-#  admissionWebhooks:
-#    # Enables validating and mutating webhooks for the Ingress Controller
-#    enabled: true
+  admissionWebhooks:
+    # Enables validating and mutating webhooks for the Ingress Controller
+    enabled: true
 
-#  resources:
-#    requests:
-#      cpu: 100m
-#      memory: 128Mi
-#    limits:
-#      cpu: 500m
-#      memory: 256Mi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
 
   #config:
   #  enable-rate-limit: "true"
