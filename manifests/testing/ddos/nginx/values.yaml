@@ -5,7 +5,8 @@ controller:
     meta.helm.sh/release-namespace: "ingress-nginx"
 
   # Number of NGINX Ingress Controller pods
-  replicaCount: 2
+  # Set to 1 for easy observation
+  replicaCount: 1
 
   service:
     type: NodePort
