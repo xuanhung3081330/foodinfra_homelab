@@ -1,21 +1,4 @@
 controller:
-  # Customize the Ingress resource definition
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
-      nginx.ingress.kubernetes.io/limit-rps: "10"
-      nginx.ingress.kubernetes.io/limit-burst: "20"
-    hosts:
-      - host: nginx-service
-        paths:
-          - path: /
-            pathType: Prefix
-            service:
-              name: nginx-service
-              port: 80
-
   annotations:
     app.kuberenetes.io/managed-by: "Helm"
     meta.helm.sh/release-name: "nginx-ingress"
@@ -58,4 +41,20 @@ controller:
   #  limit-rps: "10"
 
   #  # Allows small bursts above the limit-rps
-  #  limit-burst-multiplier: "2"
+  #  limit-burst-multiplier: "2"  
+# Customize the Ingress resource definition
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/limit-rps: "10"
+    nginx.ingress.kubernetes.io/limit-burst: "20"
+  hosts:
+    - host: nginx-service
+      paths:
+        - path: /
+          pathType: Prefix
+          service:
+            name: nginx-service
+            port: 80
