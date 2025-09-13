@@ -1,4 +1,9 @@
 controller:
+  annotations:
+    app.kuberenetes.io/managed-by: "Helm"
+    meta.helm.sh/release-name: "nginx-ingress"
+    meta.helm.sh/release-namespace: "ingress-nginx"
+
   # Number of NGINX Ingress Controller pods
   replicaCount: 2
 
