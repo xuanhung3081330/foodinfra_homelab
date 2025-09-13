@@ -33,3 +33,12 @@ controller:
     limits:
       cpu: 500m
       memory: 256Mi
+
+  config:
+    enable-rate-limit: "true"
+    
+    # Maximum requests per second per clientIP
+    limit-rps: "10"
+
+    # Allows small bursts above the limit-rps
+    limit-burst-multiplier: "2"
