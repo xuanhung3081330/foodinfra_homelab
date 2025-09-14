@@ -2,7 +2,7 @@ grafana:
   enabled: true
   service:
     type: NodePort
-    nodePort: 30080
+    nodePort: 30000
 
 prometheus:
   prometheusSpec:
