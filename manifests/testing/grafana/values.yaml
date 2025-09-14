@@ -1,0 +1,30 @@
+grafana:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30080
+
+prometheus:
+  prometheusSpec:
+    retention: "7d"
+    scrapeInterval: "15s"
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 200m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+  service:
+    type: ClusterIP
+
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 100m
+      limits:
+        memory: 256Mi
+        cpu: 200m
