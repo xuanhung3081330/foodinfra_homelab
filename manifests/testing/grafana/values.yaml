@@ -20,6 +20,28 @@ prometheus:
 
 alertmanager:
   enabled: true
+  config:
+    # Settings applied to all alerts and receives by default
+    global:
+      # The SMTP server and port to use for sending email
+      smtp_smarthost: "smtp.gmail.com:587"
+      smtp_from: "xuanhung3081330@gmail.com"
+      smtp_auth_username: "xuanhung3081330@gmail.com"
+      smtp_auth_password: "xxxxx"
+      smtp_require_tls: true
+
+    # Defines how alerts are routed to the receivers
+    route:
+      receiver: "gmail-notifications"
+
+    # Receivers
+    receivers:
+      - name: "gmail-notifications"
+        email_configs:
+          - to: "xuanhung3081330@gmail.com"
+
+            # Tells Alertmanager to also send an email when an alert is resolved (not just when it fires)
+            send_resolved: true
   alertmanagerSpec:
     resources:
       requests:
