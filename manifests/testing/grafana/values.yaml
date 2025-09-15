@@ -43,6 +43,7 @@ alertmanager:
             # Tells Alertmanager to also send an email when an alert is resolved (not just when it fires)
             send_resolved: true
   alertmanagerSpec:
+    replicas: 1
     resources:
       requests:
         memory: 128Mi
