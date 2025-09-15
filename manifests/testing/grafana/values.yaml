@@ -28,7 +28,8 @@ alertmanager:
 
     # Defines how alerts are routed to the receivers
     route:
-      receiver: "gmail-notifications"
+      routes:
+        - receiver: "gmail-notifications"
 
     # Receivers
     receivers:
