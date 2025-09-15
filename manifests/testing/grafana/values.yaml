@@ -1,0 +1,50 @@
+grafana:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30000
+
+prometheus:
+  prometheusSpec:
+    retention: "7d"
+    scrapeInterval: "15s"
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 200m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+  service:
+    type: ClusterIP
+
+alertmanager:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30903
+  config:
+    #global
+
+    # Defines how alerts are routed to the receivers
+    route:
+      routes:
+        - receiver: "gmail-notifications"
+
+    # Receivers
+    receivers:
+      - name: "gmail-notifications"
+        email_configs:
+          - to: "xuanhung3081330@gmail.com"
+
+            # Tells Alertmanager to also send an email when an alert is resolved (not just when it fires)
+            send_resolved: true
+  alertmanagerSpec:
+    replicas: 1
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 100m
+      limits:
+        memory: 256Mi
+        cpu: 200m
