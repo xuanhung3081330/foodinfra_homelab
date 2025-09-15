@@ -20,6 +20,9 @@ prometheus:
 
 alertmanager:
   enabled: true
+  service:
+    type: NodePort
+    nodePort: 30903
   config:
     # Settings applied to all alerts and receives by default
     global:
@@ -43,9 +46,6 @@ alertmanager:
             # Tells Alertmanager to also send an email when an alert is resolved (not just when it fires)
             send_resolved: true
   alertmanagerSpec:
-    service:
-      type: NodePort
-      nodePort: 30903
     replicas: 1
     resources:
       requests:
